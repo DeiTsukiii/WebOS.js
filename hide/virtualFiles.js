@@ -118,7 +118,7 @@ async function initializeFiles() {
     }
 
     await Promise.all(filesToLoad.map(async filePath => {
-        const content = await getFile(`../../${filePath}`);
+        const content = await getFile(`./${filePath}`);
         if (content !== null) {
             const parts = filePath.split('/');
             let currentDir = files['/'];
