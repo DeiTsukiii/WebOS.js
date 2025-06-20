@@ -13,8 +13,14 @@ export function catCommand(operands, flags, longFlags, context) {
         const fileEntry = getDirectory(absolutePath);
 
         if (!fileEntry) output.push(error.not_found(filePath));
-        if (fileEntry.type.startsWith('d')) output.push(error.wrong_file_type);
-        if (!fileEntry.type.includes('r')) output.push(error.perms_denied);
+        if (fileEntry.type.startsWith('d')) {
+            output.push(error.wrong_type);
+            continue;
+        };
+        if (!fileEntry.type.includes('r')) {
+            output.push(error.perms_denied);
+            continue;
+        };
 
         if (fileEntry.type.startsWith('-')) {
             const contentLines = fileEntry.content.split('\n');

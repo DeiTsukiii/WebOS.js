@@ -1,5 +1,5 @@
 export const commandNames = ['help', 'cls', 'echo', 'cd', 'ls', 'cat', 'reboot', 'javascript', 'reset', 'chmod', 'exemple', 'pwd', 'mkdir', 'mv', 'cp', 'rmdir', 'rm', 'curl'];
-const filesToLoad = ['bin/main.js', 'usr/share/css/style.css', 'etc/colors.css', 'etc/config.js', 'libs/colors.js', 'libs/errors.js', 'libs/files.js', 'libs/parser.js'];
+const filesToLoad = ['bin/main.js', 'usr/share/css/style.css', 'etc/colors.css', 'etc/config.js', 'libs/colors.js', 'libs/errors.js', 'libs/files.js', 'libs/parser.js', 'home/user/Desktop/README.md'];
 commandNames.forEach((cmd) => filesToLoad.push(`bin/${cmd}.js`));
 
 let files = {
@@ -34,7 +34,7 @@ let files = {
                                 type: 'drwxs',
                                 date: [Date.now(), Date.now()],
                                 contents: {
-                                    'README.md': { type: '-rwxu', content: '## README.md file', date: [Date.now(), Date.now()] },
+                                    'README.md': { type: '-rwxu', content: '', date: [Date.now(), Date.now()] },
                                     's.sh': { type: '-rwxu', content: '# exemple sh script\necho "/system/commands files and permissions :"\ncd /system/commands/\nls --long', date: [Date.now(), Date.now()] },
                                     'script.js': { type: '-rwxu', content: 'const a = 5;\nconst b = 2;\nif (a > b) {\n    console.log("a est plus grand que b");\n} else {\n    console.error("a n\'est pas plus grand que b");\n}', date: [Date.now(), Date.now()] },
                                 }
