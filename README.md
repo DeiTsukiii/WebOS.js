@@ -27,7 +27,7 @@ Available commands:
   cp		    - copy SOURCE to DESTINATION
   echo		    - display a line of text
   exemple	    - exemple command
-  javascript	   - execute a JavaScript (.js) script
+  javascript	    - execute a JavaScript (.js) script
   ls		    - list directory contents
   mkdir		    - create a directory
   mv		    - move files and directories
