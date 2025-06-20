@@ -1,4 +1,4 @@
-export const commandNames = ['help', 'cls', 'echo', 'cd', 'ls', 'cat', 'reboot', 'javascript', 'reset', 'chmod', 'exemple', 'pwd', 'mkdir', 'mv', 'cp', 'rmdir', 'rm'];
+export const commandNames = ['help', 'cls', 'echo', 'cd', 'ls', 'cat', 'reboot', 'javascript', 'reset', 'chmod', 'exemple', 'pwd', 'mkdir', 'mv', 'cp', 'rmdir', 'rm', 'curl'];
 const filesToLoad = ['bin/main.js', 'usr/share/css/style.css', 'etc/colors.css', 'etc/config.js', 'libs/colors.js', 'libs/errors.js', 'libs/files.js', 'libs/parser.js'];
 commandNames.forEach((cmd) => filesToLoad.push(`bin/${cmd}.js`));
 
@@ -145,6 +145,9 @@ initializeFiles().catch(error => {
 
 export async function getFiles() {
     let filesToSend = localStorage.getItem('WebOSFiles');
-    if (!filesToSend) return files;
-    else return JSON.parse(filesToSend);
+    if (!filesToSend) {
+        return files;
+    } else {
+        return JSON.parse(filesToSend);
+    };
 }

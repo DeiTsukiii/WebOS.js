@@ -5,7 +5,7 @@ import { parseCommand } from "../libs/parser.js";
 import { error } from "../libs/errors.js";
 import { CONFIG } from "../etc/config.js";
 
-export const fileSystem = await getFiles();
+export let fileSystem;
 
 const consoleOutput = document.getElementById('consoleOutput');
 const currentCommandDisplay = document.getElementById('currentCommand');
@@ -13,7 +13,7 @@ const consoleCursor = document.getElementById('consoleCursor');
 const cursorIcon = document.getElementById('cursorIcon');
 const consolePrompt = document.getElementById('prompt');
 
-let consoleBuffer = [ clc[CONFIG.mainMessageColor](CONFIG.mainMessage.join('\n')) ];
+let consoleBuffer = [ 'Welcome to WebOS.js', 'Loading...' ];
 let currentCommand = '';
 let cursorPosition = 0;
 let isConsoleActive = false;
@@ -41,6 +41,8 @@ function updateConsoleDisplay() {
 }
 
 async function loadCommands() {
+    consoleBuffer.push("Loading commands...");
+    updateConsoleDisplay();
     for (const cmdName of commandNames) {
         try {
             const module = await import(`./${cmdName}.js`);
@@ -54,9 +56,12 @@ async function loadCommands() {
             } else {
                 console.warn(`Command function "${cmdName}Command" not found in ${cmdName}.js`);
             }
+
         } catch (error) {
             console.error(`Failed to load command ${cmdName}:`, error);
         }
+        consoleBuffer.push(`Command '${cmdName}' loaded successfully`);
+        updateConsoleDisplay();
     }
     updateConsolePrompt();
 }
@@ -65,7 +70,8 @@ function setupConsoleKeyboardInput() {
     consoleCursor.style.display = 'inline';
     isConsoleActive = true;
     document.addEventListener('keydown', handleConsoleKeydown);
-    updateConsoleDisplay(consoleBuffer.join('\n'));
+    consoleBuffer = [ clc[CONFIG.mainMessageColor](CONFIG.mainMessage.join('\n')) ];
+    updateConsoleDisplay();
 }
 
 function getElementWidthInPixels(element) {
@@ -152,7 +158,7 @@ function updateCommandDisplay(text) {
     consoleCursor.style.display = 'inline';
     consoleCursor.style.animation = currentCommand.length > cursorPosition ? 'none' : 'blink-caret 1s step-end infinite'
 
-    cursorIcon.style.height = currentCommand.length > cursorPosition ? '100%' : '8%';
+    cursorIcon.style.height = currentCommand.length > cursorPosition ? '100%' : '5%';
 }
 
 async function input(promptText = '') {
@@ -275,7 +281,7 @@ async function handleConsoleKeydown(event) {
 
         try {
             const pastedText = await navigator.clipboard.readText();
-            currentCommand += pastedText;
+            currentCommand += pastedText.replaceAll('‹', '<').replaceAll('›', '>');
             cursorPosition = currentCommand.length;
             updateCommandDisplay(currentCommand);
             historyIndex = commandHistory.length;
@@ -357,7 +363,7 @@ async function executeFile(cmdName, commandContext) {
             return error.perms_denied;
         }
     } else {
-        return error.no_found(cmdName);
+        return error.not_found(cmdName);
     }
 }
 
@@ -387,9 +393,7 @@ async function handleCommand(command) {
     command = command.trim();
     if (command === '') return { commandOutput: "", redirectToFile: false, appendMode: false };
 
-    const { operands, flags, longFlags, redirectToFile, appendMode } = parseCommand(command);
-
-    let cmdName = operands.shift(0);
+    const { cmdName, operands, flags, longFlags, redirectToFile, appendMode } = parseCommand(command);
 
     const commandContext = getCommandContext();
 
@@ -415,9 +419,16 @@ async function handleCommand(command) {
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+    updateConsolePrompt();
+    updateConsoleDisplay();
+    consoleBuffer.push('Loading files...');
+    updateConsoleDisplay();
+    fileSystem = await getFiles();
+    consoleBuffer.push('Files loaded successfully');
+    await loadCommands();
+    updateConsoleDisplay();
     setupConsoleKeyboardInput();
-    loadCommands();
 });
 
 document.addEventListener('wheel', function(event) {

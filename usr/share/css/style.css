@@ -77,22 +77,19 @@ p {
 .current-command {
     max-height: 22px;
     z-index: 20;
-}
-
-.current-command pre {
-    margin: 0;
     color: var(--white);
+    white-space: pre;
 }
 
 .input-cursor {
     width: 10.2px;
     height: 20px;
     position: absolute;
-    left: 142.2px;
+    left: 134.03px;
     bottom: 20px;
     margin-left: 5px;
     animation: blink-caret 1s step-end infinite;
-    display: inline-block;
+    display: none;
     vertical-align: bottom;
 }
 

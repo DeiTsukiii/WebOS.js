@@ -11,7 +11,6 @@ colors.forEach(color => clc[color] = (text) => colorText(text, `color-${color}`)
 
 export function sanitizeHtml(text, linkAuthorized) {
     let sanitizedText = text
-        .replaceAll(/&/g, '&amp;')
         .replaceAll(/</g, '&lt;')
         .replaceAll(/>/g, '&gt;');
 
@@ -23,18 +22,14 @@ export function sanitizeHtml(text, linkAuthorized) {
     });
 
     if (linkAuthorized) sanitizedText = sanitizedText.replace(allowedARegex, (match, href, content) => {
-        return `<a href="${href}"${href.startsWith('javascript') ? '' : 'target="_blank"'}>${content}</a>`;
+        return `<a href="${href}" ${href.startsWith('javascript') ? '' : 'target="_blank"'}>${content}</a>`;
     });
 
-    return sanitizedText.replaceAll('&lt;', '‹').replaceAll('&gt;', '>');
+    return sanitizedText.replaceAll('&lt;', '‹').replaceAll('&gt;', '›');
 }
 
 export function colorCommand(text, isAwaitingInput) {
-    if (!text.trim() && !isAwaitingInput) return '';
-
-    if (isAwaitingInput) {
-        return sanitizeHtml(clc.purpleblue(text), false);
-    }
+    if (isAwaitingInput) return sanitizeHtml(clc.purpleblue(text), false);
 
     const parsedSegments = parseCommandColor(text);
     const finalColoredParts = [];

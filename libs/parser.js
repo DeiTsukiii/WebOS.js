@@ -7,9 +7,16 @@ export function parseCommand(commandString) {
     const regex = /("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'|>>|>|--[a-zA-Z0-9=_-]+|-[a-zA-Z0-9]+|\S+)/g;
     let match;
     let expectingRedirectTarget = false;
+    let first = true;
+    let cmdName;
 
     while ((match = regex.exec(commandString)) !== null) {
         let arg = match[1];
+        if (first) {
+            cmdName = arg;
+            first = false;
+            continue;
+        }
 
         if (expectingRedirectTarget) {
             redirectToFile = arg;
@@ -47,11 +54,8 @@ export function parseCommand(commandString) {
         }
     }
 
-    if (expectingRedirectTarget) {
-        return { operands, flags, longFlags, redirectToFile: undefined, appendMode };
-    }
-
-    return { operands, flags, longFlags, redirectToFile, appendMode };
+    if (expectingRedirectTarget) return { cmdName, operands, flags, longFlags, redirectToFile: undefined, appendMode };
+    else return { cmdName, operands, flags, longFlags, redirectToFile, appendMode };
 }
 
 export function parseCommandColor(commandString) {

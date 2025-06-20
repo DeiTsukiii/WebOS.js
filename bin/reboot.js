@@ -2,9 +2,7 @@ export function rebootCommand(operands, flags, longFlags, context) {
     if (longFlags.includes('help')) return fullDescription;
     const { clc } = context;
 
-    setTimeout(() => {
-        window.location.reload();
-    }, 200);
+    window.location.reload();
 
     return clc.yellow("Rebooting system... Please wait.");
 }
