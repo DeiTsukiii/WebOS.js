@@ -25,10 +25,10 @@ Available commands:
   chmod		    - change file or directory permissions
   cls		    - clear the console screen
   cp		    - copy SOURCE to DESTINATION
-  curl	    	- transfer data from URLs
+  curl	        	- transfer data from URLs
   echo		    - display a line of text
   exemple	    - exemple command
-  javascript	- execute a JavaScript (.js) script
+  javascript    	- execute a JavaScript (.js) script
   ls		    - list directory contents
   mkdir		    - create a directory
   mv		    - move files and directories
