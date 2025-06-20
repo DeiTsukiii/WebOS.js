@@ -1,0 +1,47 @@
+:root {
+    --white: #f8f8f2;
+    --red: #ff5555;
+    --green: #00ff00;
+    --yellow: #f1fa8c;
+    --purpleblue: #bd93f9;
+    --cyan: #8be9fd;
+    --cyan2: #45d9fa;
+    --blue: #0062d1;
+    --magenta: #ff79c6;
+    --black: #000000;
+}
+
+.color-red {
+    color: var(--red);
+}
+.color-green {
+    color: var(--green);
+}
+.color-yellow {
+    color: var(--yellow);
+}
+.color-purpleblue {
+    color: var(--purpleblue);
+}
+.color-cyan {
+    color: var(--cyan);
+}
+.color-cyan2 {
+    color: var(--cyan2);
+}
+.color-blue {
+    color: var(--blue);
+}
+.color-magenta {
+    color: var(--magenta);
+}
+.color-white {
+    color: var(--white);
+}
+.color-black {
+    background-color: var(--white);
+    color: var(--black);
+}
+.color-bold {
+    font-weight: 900;
+}
