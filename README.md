@@ -1,10 +1,10 @@
 # WebOS.js
 
-An interactive web-based virtual Unix-like operating system.
+An interactive web-based virtual Unix-like "operating system".
 
 ## 📌 About
 
-WebOS.js is a minimalist yet interactive simulated operating system, built entirely in JavaScript, designed to run directly in your web browser. It provides a command-line interface (shell) experience, allowing users to interact with a persistent virtual file system. The project aims to recreate the feel and basic functionalities of a Linux terminal environment, enabling users to explore a file structure, manipulate data, and execute basics commands.
+WebOS.js is a minimalist yet interactive simulated "operating system", built entirely in JavaScript, designed to run directly in your web browser. It provides a command-line interface (shell) experience, allowing users to interact with a persistent virtual file system. The project aims to recreate the feel and basic functionalities of a Linux terminal environment, enabling users to explore a file structure, manipulate data, and execute basics commands.
 
 ## ✨ Key Features
 
