@@ -14,7 +14,9 @@ const ERRORS = [
     { "name": "wrong_file_type", "message": "invalid file type. Expected a '%&%' file" },
     { "name": "internal_error", "message": "an internal command error occurred. %&%" },
     { "name": "already_exist", "message": "'%&%' already exist" },
-    { "name": "not_empty", "message": "'%&%' is not empty" }
+    { "name": "not_empty", "message": "'%&%' is not empty" },
+    { "name": "failed_fetch", "message": "failed to fetch '%&%'" },
+    { "name": "error_404", "message": "HTTP status %&%" },
 ]
 export const error = {}
 ERRORS.forEach(err => {

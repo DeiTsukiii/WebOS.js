@@ -29,7 +29,8 @@ export const CONFIG = {
         "───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────",
         "───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────",
         "        │                                    │                                                 │                                                   ",
-        "        └─> Made With <3 By <a href=\"https://deitsuki.netlify.app\">DeiTsuki</a>.        └─> Type 'help' to see available commands.        └─> Type 'cls' to clear the screen."
+        "        └─> Made With <3 By <a href=\"https://deitsuki.netlify.app\">DeiTsuki</a>.        └─> Type 'help' to see available commands.        └─> Type 'cls' to clear the screen.",
+        ""
     ],
     "mainMessageColor": "purpleblue"
 }
